@@ -1,6 +1,15 @@
-public class WeeklyEmployee {
+import java.time.LocalDate;
+
+public class WeeklyEmployee extends Employee {
 	private byte noOfWeeks;
 	private float wagePerWeek;
+
+	public WeeklyEmployee(String first_Name, String last_Name, LocalDate date_of_Birth, Address address,
+			String mobile_Number, String personal_Email, String work_Email) {
+		super(first_Name, last_Name, date_of_Birth, address, mobile_Number, personal_Email, work_Email);
+		setNoOfWeeks(noOfWeeks);
+		setWagePerWeek(wagePerWeek);
+	}
 
 	public byte getNoOfWeeks() {
 		return noOfWeeks;

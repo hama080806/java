@@ -1,5 +1,13 @@
-public class SalariedEmployee {
+import java.time.LocalDate;
+
+public class SalariedEmployee extends Employee {
 	private double annualSalary;
+
+	public SalariedEmployee(String first_Name, String last_Name, LocalDate date_of_Birth, Address address,
+			String mobile_Number, String personal_Email, String work_Email) {
+		super(first_Name, last_Name, date_of_Birth, address, mobile_Number, personal_Email, work_Email);
+		setAnnualSalary(annualSalary);
+	}
 
 	public double getAnnualSalary() {
 		return annualSalary;

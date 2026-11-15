@@ -1,7 +1,16 @@
-public class CommissionEmployee {
+import java.time.LocalDate;
+
+public class CommissionEmployee extends Employee {
 	private double totalSales;
 	private double price;
 
+	public CommissionEmployee(String first_Name, String last_Name, LocalDate date_of_Birth, Address address,
+			String mobile_Number, String personal_Email, String work_Email) {
+		super(first_Name, last_Name, date_of_Birth, address, mobile_Number, personal_Email, work_Email);
+		setTotalSales(totalSales);
+		setPrice(price);
+		
+	}
 	public double getTotalSales() {
 		return totalSales;
 	}
