@@ -47,21 +47,51 @@ public class Main_Driver {
         staffMem.add(new EmployeeBasedCommission("Lionel", "Messi", LocalDate.of(1998, 7, 2),
                 new Address(), "0500000016", "lionel.messi@example.com", "lionel.messi@company.com"));
 
-
-            
+        Main_Driver driver = new Main_Driver();
+        System.out.println("Total payment: " + driver.totalPayment(staffMem));
     }
+
     public void printList(ArrayList<StaffMember> staff){
         for (StaffMember member: staff){
             System.out.println(member);
         }
-
-    } 
-    public void totalPayment(ArrayList<StaffMember> staff){
-        double total=0.0;
-        for (StaffMember member: staff){
-          
-        }
-
     }
 
+    public double totalPayment(ArrayList<StaffMember> staff){
+        double total = 0.0;
+
+        for (StaffMember member : staff){
+
+            if (member instanceof EmployeeBasedCommission){
+                EmployeeBasedCommission employee = (EmployeeBasedCommission) member;
+                total += employee.getBaseSalary()
+                        + CommissionEmployee.pay(employee.getTotalSales(), employee.getPrice());
+
+            } else if (member instanceof CommissionEmployee){
+                CommissionEmployee employee = (CommissionEmployee) member;
+                total += CommissionEmployee.pay(employee.getTotalSales(), employee.getPrice());
+
+            } else if (member instanceof SalariedEmployee){
+                SalariedEmployee employee = (SalariedEmployee) member;
+                total += SalariedEmployee.pay(employee.getAnnualSalary());
+
+            } else if (member instanceof HourlyEmployee){
+                HourlyEmployee employee = (HourlyEmployee) member;
+                total += HourlyEmployee.pay(employee.getHours(), employee.getRate());
+
+            } else if (member instanceof WeeklyEmployee){
+                WeeklyEmployee employee = (WeeklyEmployee) member;
+                total += WeeklyEmployee.pay(employee.getNoOfWeeks(), employee.getWagePerWeek());
+
+            } else if (member instanceof ContractEmployee){
+                ContractEmployee employee = (ContractEmployee) member;
+                if (employee.getNumberOfMonths() > 0){
+                    total += ContractEmployee.pay(employee.getContractRate(), employee.getNumberOfMonths());
+                }
+            }
+            // Volunteers and regular Employees do not have a payment calculation.
+        }
+
+        return total;
+    }
 }
